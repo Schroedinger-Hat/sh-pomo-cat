@@ -1,0 +1,12 @@
+{
+  "customSyntax": "postcss-html",
+  "extends": [
+    "stylelint-config-idiomatic-order",
+    "stylelint-config-recommended-vue",
+    "stylelint-config-standard-scss"
+  ],
+  "rules": {
+    "scss/comment-no-empty": null,
+    "function-name-case": ["lower", { "ignoreFunctions": ["toRem"] }]
+  }
+}
