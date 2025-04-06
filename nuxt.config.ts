@@ -6,6 +6,9 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
   css: ['~/assets/css/tailwind.css'],
+  fonts: {
+    provider: 'fontsource',
+  },
   modules: [
     '@nuxt/test-utils/module',
     '@nuxtjs/color-mode',
@@ -13,6 +16,7 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
     '@nuxt/icon',
     'nuxt-svgo',
+    '@nuxt/fonts',
   ],
   colorMode: {
     classSuffix: '',
@@ -31,3 +35,4 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2024-07-13',
 })
+
