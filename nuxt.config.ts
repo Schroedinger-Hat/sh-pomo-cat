@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     defaultImport: 'component',
   },
   shadcn: {
-    prefix: 'SC',
+    prefix: '',
     componentDir: './app/components/ui',
   },
   vite: {
@@ -35,4 +35,3 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2024-07-13',
 })
-
