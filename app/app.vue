@@ -40,20 +40,36 @@ function handleTimerInteraction() {
         <CtaColorMode />
       </nav>
     </header>
-    <main class="mx-auto bg-background max-w-2xl w-full container grid grid-rows-[auto_1fr] md:grid-cols-2 md:grid-rows-1">
+    <main class="mx-auto bg-background max-w-4xl w-full container grid grid-rows-[auto_1fr] md:grid-cols-2 md:grid-rows-1 p-6 gap-10">
       <div class="flex justify-start items-center flex-col md:items-start p-6">
-        <p class="text-7xl tabular-nums">
+        <p class="text-7xl tabular-nums text-center w-full">
           {{ timeLeft }}
         </p>
-        <SCButton class="w-full md:w-auto md:min-w-20 mt-2 min-w-20 leading-none" @click="handleTimerInteraction">
-          {{ isActive ? 'Pause' : 'Start' }}
-        </SCButton>
+        <div class="flex justify-between items-center gap-x-2 w-full">
+          <Button class="w-full md:w-auto md:min-w-20 mt-2 min-w-20 leading-none" @click="handleTimerInteraction">
+            {{ isActive ? 'Pause' : 'Start' }}
+          </Button>
+          <Button class="w-full md:w-auto md:min-w-20 mt-2 min-w-20 leading-none" @click="reset">
+            Reset
+          </Button>
+        </div>
       </div>
-      <div class="p-6">
-        <p class="text-center text-xl">
-          Completed pomos: {{ completions }}
-        </p>
-      </div>
+      <Card>
+        <CardHeader>
+          <CardTitle class="flex justify-between items-center relative">
+            <p>Current session</p>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div class="flex justify-center items-center">
+            <span>Completed PomoCats: {{ completions }}</span>
+            <span />
+            <div class="size-8 ml-2 ">
+              <img src="~/assets/images/schroddy.png" alt="Schrödinger Pomo Cat" class="hidden md:block w-full h-full object-fit rounded-lg shadow-lg">
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </main>
   </div>
 </template>
