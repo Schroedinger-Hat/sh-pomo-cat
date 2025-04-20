@@ -47,8 +47,8 @@ function handleTimerInteraction() {
       </nav>
     </header>
     <div :style="{ height: `${contentHeight}px` }" class="relative">
-      <PhysicsTest class="absolute inset-0" />
-      <main class="mx-auto bg-background max-w-4xl w-full container grid grid-rows-[auto_1fr] md:grid-cols-2 md:grid-rows-1 p-6 gap-10">
+      <PhysicsTest class="absolute inset-0 -z-10" />
+      <main class="mx-auto bg-transparent max-w-4xl w-full container grid grid-rows-[auto_1fr] md:grid-cols-2 md:grid-rows-1 p-6 gap-10">
         <div class="flex justify-start items-center flex-col md:items-start p-6">
           <p class="text-7xl tabular-nums text-center w-full">
             {{ timeLeft }}
