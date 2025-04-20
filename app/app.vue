@@ -18,12 +18,7 @@ const {
 } = usePomodoro()
 
 function handleTimerInteraction() {
-  if (isActive.value) {
-    pause()
-  }
-  else {
-    start()
-  }
+  return isActive.value ? pause() : start()
 }
 </script>
 
@@ -49,34 +44,51 @@ function handleTimerInteraction() {
     </header>
     <div :style="{ height: `${contentHeight}px` }" class="relative">
       <PhysicsTest class="absolute inset-0 -z-10" />
-      <main class="mx-auto bg-transparent max-w-4xl w-full container grid grid-rows-[auto_1fr] md:grid-cols-2 md:grid-rows-1 p-6 md:gap-10">
-        <div class="flex justify-start items-center flex-col md:items-start p-6">
-          <p class="text-7xl tabular-nums text-center w-full">
-            {{ timeLeft }}
-          </p>
-          <div class="flex justify-center items-center gap-x-2 md:w-full">
-            <Button class="w-full md:w-auto md:min-w-20 mt-2 min-w-20 leading-none" @click="handleTimerInteraction">
-              {{ isActive ? 'Pause' : 'Start' }}
-            </Button>
-            <Button class="w-full md:w-auto md:min-w-20 mt-2 min-w-20 leading-none" @click="reset">
-              Reset
-            </Button>
-          </div>
-        </div>
-        <Card>
-          <CardHeader>
-            <CardTitle class="flex justify-between items-center relative">
-              <p>Current cycle</p>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div class="flex justify-center items-center">
-              <span>Completed PomoCats: {{ completions }}</span>
-              <span>Current cycle: {{ currentCycle }}</span>
-              <span />
-              <div class="size-8 ml-2 ">
-                <img src="~/assets/images/schroddy.png" alt="Schrödinger Pomo Cat" class="hidden md:block w-full h-full object-fit rounded-lg shadow-lg">
+      <main class="mx-auto bg-transparent max-w-4xl w-full container p-6">
+        <Card class="w-full">
+          <CardContent class="grid grid-cols-12 md:gap-10 gap-4 divide-y md:divide-y-0 md:divide-x">
+            <div class="col-span-12 md:col-span-6 w-full pb-4 md:pb-0">
+              <p class="text-7xl tabular-nums text-center w-full">
+                {{ timeLeft }}
+              </p>
+              <div class="flex justify-center items-center gap-x-2 w-full">
+                <Button class="md:w-auto md:min-w-20 mt-2 min-w-20 leading-none" @click="handleTimerInteraction">
+                  {{ isActive ? 'Pause' : 'Start' }}
+                </Button>
+                <Button class="md:w-auto md:min-w-20 mt-2 min-w-20 leading-none" @click="reset">
+                  Reset
+                </Button>
               </div>
+            </div>
+            <div class="col-span-12 md:col-span-6 content-center">
+              <ul role="list" class="space-y-2 mx-12 md:mx-6">
+                <li class="flex justify-between gap-x-6">
+                  <div class="flex min-w-0 gap-x-4">
+                    <p class="min-w-0 flex-auto text-sm/6 font-semibold">
+                      Current cycle
+                    </p>
+                  </div>
+                  <div class="shrink-0 flex justify-center items-center">
+                    <div class="flex space-x-2">
+                      <div v-for="n in 4" :key="n" class="size-6 transition-transform">
+                        <img src="~/assets/images/schroddy.png" :class="{ grayscale: n > currentCycle }">
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="flex justify-between gap-x-6">
+                  <div class="flex min-w-0 gap-x-4">
+                    <p class="min-w-0 flex-auto text-sm/6 font-semibold">
+                      Completed PomoCats
+                    </p>
+                  </div>
+                  <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
+                    <p class="text-sm/6">
+                      {{ completions }}
+                    </p>
+                  </div>
+                </li>
+              </ul>
             </div>
           </CardContent>
         </Card>
