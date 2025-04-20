@@ -8,6 +8,7 @@ const completions = shallowRef(0)
 const timer = shallowRef(TEST_TIME)
 const currentCycle = shallowRef(0)
 const isBreak = shallowRef(false)
+const isLongBreak = shallowRef(false)
 
 export const usePomodoro = () => {
   const { pause, resume: start, isActive } = useIntervalFn(() => {
@@ -19,6 +20,11 @@ export const usePomodoro = () => {
       if (isBreak.value) {
         isBreak.value = false
         timer.value = TEST_TIME
+
+        if (isLongBreak.value) {
+          isLongBreak.value = false
+          currentCycle.value = 0
+        }
       }
       else {
         completions.value += 1
@@ -27,7 +33,7 @@ export const usePomodoro = () => {
 
         if (currentCycle.value === 4) {
           timer.value = TEST_TIME
-          currentCycle.value = 0 // Reset cycle after long break
+          isLongBreak.value = true
         }
         else {
           timer.value = TEST_TIME
