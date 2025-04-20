@@ -25,6 +25,15 @@ const {
 function handleTimerInteraction() {
   return isActive.value ? pause() : start()
 }
+
+useHead({
+  title: () => `${timeLeft.value} | Schrödinger PomoCat`,
+})
+
+useSeoMeta({
+  ogTitle: 'Schrödinger PomoCat',
+  ogDescription: 'A pomodoro app with a physics twist',
+})
 </script>
 
 <template>
@@ -32,7 +41,7 @@ function handleTimerInteraction() {
     <header ref="header" class="h-16 border-b flex justify-center items-center p-6">
       <div class="mr-auto flex justify-center items-center gap-x-2">
         <SHLogo class="size-8" />
-        <p class="font-medium text-lg leading-none">
+        <p class="font-medium text-sm md:text-lg leading-none">
           Schrödinger PomoCat
         </p>
       </div>
@@ -76,9 +85,9 @@ function handleTimerInteraction() {
                 </Button>
               </div>
             </div>
-            <div class="col-span-12 md:col-span-6 content-center">
-              <ul role="list" class="space-y-2 mx-12 md:mx-6">
-                <li class="flex justify-between gap-x-6">
+            <div class="col-span-12 md:col-span-6 content-center ">
+              <ul role="list" class="space-y-2 mx-12 md:mx-6 text-center md:text-start">
+                <li class="flex flex-col md:flex-row justify-between gap-x-6 gap-y-2 md:gap-y-0">
                   <div class="flex min-w-0 gap-x-4">
                     <p class="min-w-0 flex-auto text-sm/6 font-semibold">
                       Current cycle
@@ -92,7 +101,7 @@ function handleTimerInteraction() {
                     </div>
                   </div>
                 </li>
-                <li class="flex justify-between gap-x-6">
+                <li class="flex flex-col md:flex-row justify-between gap-x-6 gap-y-2 md:gap-y-0">
                   <div class="flex min-w-0 gap-x-4">
                     <p class="min-w-0 flex-auto text-sm/6 font-semibold">
                       Completed PomoCats
