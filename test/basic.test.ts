@@ -7,4 +7,7 @@ describe('basic test', () => {
   it('calculates addition', () => {
     expect(1 + 1).toEqual(2)
   })
+  it('calculates another addition', () => {
+    expect(2 + 1).toEqual(3)
+  })
 })
