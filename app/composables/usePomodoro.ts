@@ -11,10 +11,12 @@ const isBreak = shallowRef(false)
 const isLongBreak = shallowRef(false)
 
 export const usePomodoro = () => {
+  const { play } = useSoundEffects()
   const { pause, resume: start, isActive } = useIntervalFn(() => {
     timer.value -= 1
 
     if (timer.value === 0) {
+      play()
       pause()
 
       if (isBreak.value) {
@@ -52,6 +54,8 @@ export const usePomodoro = () => {
     timer.value = POMODORO_TIME
     if (isActive.value) {
       pause()
+      currentCycle.value = 0
+      isBreak.value = false
     }
   }
 
