@@ -12,10 +12,17 @@ const {
   Engine,
   Render,
   Runner,
+  Mouse,
+  Events,
+  MouseConstraint,
 } = Matter
+
 let render: Matter.Render
 let engine: Matter.Engine
 let runner: Matter.Runner
+let mouseConstraint: Matter.MouseConstraint
+
+const isDragging = shallowRef(false)
 
 function addNewBody(options = {}) {
   if (!engine || !render)
@@ -69,6 +76,37 @@ function addNewBody(options = {}) {
   return newBody
 }
 
+function addMouseInteraction() {
+  if (!engine || !render)
+    return
+
+  const mouse = Mouse.create(render.canvas)
+
+  mouse.pixelRatio = pixelRatio.value
+
+  mouseConstraint = MouseConstraint.create(engine, {
+    mouse,
+    constraint: {
+      stiffness: 0.2,
+      render: {
+        visible: false,
+      },
+    },
+  })
+
+  Composite.add(engine.world, mouseConstraint)
+
+  Events.on(mouseConstraint, 'startdrag', () => {
+    isDragging.value = true
+  })
+
+  Events.on(mouseConstraint, 'enddrag', () => {
+    isDragging.value = false
+  })
+
+  render.mouse = mouse
+}
+
 function start() {
   engine = Engine.create()
 
@@ -93,7 +131,7 @@ function start() {
     height.value / 2,
     50,
     height.value * 2,
-    { isStatic: true },
+    { isStatic: true, render: { opacity: 0 } },
   )
 
   Composite.add(engine.world, [ground, leftWall, rightWall])
@@ -114,6 +152,8 @@ function start() {
   Render.run(render)
   runner = Runner.create()
   Runner.run(runner, engine)
+
+  addMouseInteraction()
 }
 
 function handleResize() {
@@ -172,6 +212,10 @@ function handleResize() {
   })
 
   Matter.Render.setPixelRatio(render, pixelRatio.value)
+
+  if (mouseConstraint && mouseConstraint.mouse) {
+    mouseConstraint.mouse.pixelRatio = pixelRatio.value
+  }
 }
 
 const debouncedResize = useDebounceFn(() => {
@@ -202,6 +246,7 @@ watch([width, height], () => {
 watch(completions, addNewBody)
 
 defineExpose({
+  isDragging,
   addNewBody,
   clearBodies: () => {
     if (!engine)
