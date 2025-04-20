@@ -4,7 +4,6 @@ import SHLogo from '~/assets/svg/sh-logo.svg'
 
 type PhysicsComponent = InstanceType<typeof MatterPhysics>
 
-const config = useRuntimeConfig()
 const headerRef = useTemplateRef('header')
 const physicsRef = useTemplateRef<PhysicsComponent>('physics')
 const { height: headerHeight } = useElementBounding(headerRef)
@@ -57,7 +56,6 @@ useSeoMeta({
         <CtaColorMode />
       </nav>
     </header>
-    {{ config }}
     <div :style="{ height: `${contentHeight}px` }" class="relative">
       <MatterPhysics ref="physics" class="absolute inset-0 z-10" :class="{ 'z-30': physicsRef?.isDragging }" />
       <main class="mx-auto bg-transparent max-w-4xl w-full container p-6 z-20 relative">
