@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import type { PhysicsTest } from '#components'
 import SHLogo from '~/assets/svg/sh-logo.svg'
 
+type PhysicsComponent = InstanceType<typeof PhysicsTest>
+
 const headerRef = useTemplateRef('header')
+const physicsRef = useTemplateRef<PhysicsComponent>('physics')
 const { height: headerHeight } = useElementBounding(headerRef)
 const { height: windowHeight } = useWindowSize()
 
@@ -44,8 +48,8 @@ function handleTimerInteraction() {
       </nav>
     </header>
     <div :style="{ height: `${contentHeight}px` }" class="relative">
-      <PhysicsTest class="absolute inset-0 -z-10" />
-      <main class="mx-auto bg-transparent max-w-4xl w-full container p-6">
+      <PhysicsTest ref="physics" class="absolute inset-0 z-10" :class="{ 'z-30': physicsRef?.isDragging }" />
+      <main class="mx-auto bg-transparent max-w-4xl w-full container p-6 z-20 relative">
         <Card class="w-full">
           <CardContent class="grid grid-cols-12 md:gap-10 gap-4 divide-y md:divide-y-0 md:divide-x">
             <div class="col-span-12 md:col-span-6 w-full pb-4 md:pb-0 space-y-3">
