@@ -45,5 +45,10 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
+  runtimeConfig: {
+    public: {
+      appMode: '',
+    },
+  },
   compatibilityDate: '2024-07-13',
 })

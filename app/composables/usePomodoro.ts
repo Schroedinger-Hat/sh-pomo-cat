@@ -4,11 +4,14 @@ const POMODORO_TIME = 25 * MINUTE_IN_SECONDS
 const SHORT_BREAK = 5 * MINUTE_IN_SECONDS
 const LONG_BREAK = 15 * MINUTE_IN_SECONDS
 
+const config = useRuntimeConfig()
+const isDev = config.public.appMode === 'development'
+
 const completions = shallowRef(0)
-const timer = shallowRef(POMODORO_TIME)
 const currentCycle = shallowRef(0)
 const isBreak = shallowRef(false)
 const isLongBreak = shallowRef(false)
+const timer = shallowRef(isDev ? TEST_TIME : POMODORO_TIME)
 
 export const usePomodoro = () => {
   const { play } = useSoundEffects()
@@ -21,7 +24,7 @@ export const usePomodoro = () => {
 
       if (isBreak.value) {
         isBreak.value = false
-        timer.value = POMODORO_TIME
+        timer.value = isDev ? TEST_TIME : POMODORO_TIME
 
         if (isLongBreak.value) {
           isLongBreak.value = false
@@ -34,11 +37,12 @@ export const usePomodoro = () => {
         isBreak.value = true
 
         if (currentCycle.value === 4) {
-          timer.value = LONG_BREAK
+          timer.value = isDev ? TEST_TIME : LONG_BREAK
           isLongBreak.value = true
         }
         else {
-          timer.value = SHORT_BREAK
+          timer.value = isDev ? TEST_TIME : SHORT_BREAK
+          isLongBreak.value = true
         }
       }
     }
