@@ -41,7 +41,6 @@ export const usePomodoro = () => {
         }
         else {
           timer.value = isDev ? TEST_TIME : SHORT_BREAK
-          isLongBreak.value = true
         }
       }
     }
