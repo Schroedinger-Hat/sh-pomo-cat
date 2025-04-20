@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { usePomodoro } from '@/composables/usePomodoro'
 import Matter from 'matter-js'
 
 const wrapperRef = useTemplateRef('wrapper')
 const { pixelRatio } = useDevicePixelRatio()
 const { width, height } = useElementBounding(wrapperRef)
+const { completions } = usePomodoro()
 const {
   Bodies,
   Composite,
@@ -196,6 +198,8 @@ onBeforeUnmount(() => {
 watch([width, height], () => {
   debouncedResize()
 })
+
+watch(completions, addNewBody)
 
 defineExpose({
   addNewBody,
