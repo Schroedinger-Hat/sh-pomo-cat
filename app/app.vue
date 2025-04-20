@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { PhysicsTest } from '#components'
+import type { MatterPhysics } from '#components'
 import SHLogo from '~/assets/svg/sh-logo.svg'
 
-type PhysicsComponent = InstanceType<typeof PhysicsTest>
+type PhysicsComponent = InstanceType<typeof MatterPhysics>
 
 const headerRef = useTemplateRef('header')
 const physicsRef = useTemplateRef<PhysicsComponent>('physics')
@@ -57,7 +57,7 @@ useSeoMeta({
       </nav>
     </header>
     <div :style="{ height: `${contentHeight}px` }" class="relative">
-      <PhysicsTest ref="physics" class="absolute inset-0 z-10" :class="{ 'z-30': physicsRef?.isDragging }" />
+      <MatterPhysics ref="physics" class="absolute inset-0 z-10" :class="{ 'z-30': physicsRef?.isDragging }" />
       <main class="mx-auto bg-transparent max-w-4xl w-full container p-6 z-20 relative">
         <Card class="w-full">
           <CardContent class="grid grid-cols-12 md:gap-10 gap-4 divide-y md:divide-y-0 md:divide-x">

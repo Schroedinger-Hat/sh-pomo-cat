@@ -5,7 +5,7 @@ const SHORT_BREAK = 5 * MINUTE_IN_SECONDS
 const LONG_BREAK = 15 * MINUTE_IN_SECONDS
 
 const completions = shallowRef(0)
-const timer = shallowRef(TEST_TIME)
+const timer = shallowRef(POMODORO_TIME)
 const currentCycle = shallowRef(0)
 const isBreak = shallowRef(false)
 const isLongBreak = shallowRef(false)
@@ -21,7 +21,7 @@ export const usePomodoro = () => {
 
       if (isBreak.value) {
         isBreak.value = false
-        timer.value = TEST_TIME
+        timer.value = POMODORO_TIME
 
         if (isLongBreak.value) {
           isLongBreak.value = false
@@ -34,11 +34,11 @@ export const usePomodoro = () => {
         isBreak.value = true
 
         if (currentCycle.value === 4) {
-          timer.value = TEST_TIME
+          timer.value = LONG_BREAK
           isLongBreak.value = true
         }
         else {
-          timer.value = TEST_TIME
+          timer.value = SHORT_BREAK
         }
       }
     }
