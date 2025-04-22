@@ -8,7 +8,6 @@ const headerRef = useTemplateRef('header')
 const physicsRef = useTemplateRef<PhysicsComponent>('physics')
 const { height: headerHeight } = useElementBounding(headerRef)
 const { height: windowHeight } = useWindowSize()
-
 const contentHeight = computed(() => windowHeight.value - headerHeight.value)
 
 const {
