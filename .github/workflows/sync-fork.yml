@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Sync Fork with Upstream
     # Only run on forks, not on the original repository
-    if: github.repository != 'Schrodinger-Hat/sh-pomo-cat'
+    if: github.repository != 'Schroedinger-Hat/sh-pomo-cat'
 
     steps:
       - name: Checkout repository
@@ -22,7 +22,7 @@ jobs:
 
       - name: Add upstream remote
         run: |
-          git remote add upstream https://github.com/Schrodinger-Hat/sh-pomo-cat.git
+          git remote add upstream https://github.com/Schroedinger-Hat/sh-pomo-cat.git
           git fetch upstream
 
       - name: Sync fork with upstream main branch
