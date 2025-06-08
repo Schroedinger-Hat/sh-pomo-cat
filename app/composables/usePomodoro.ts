@@ -13,44 +13,59 @@ export const usePomodoro = () => {
   const config = useRuntimeConfig()
   const isDev = config.public.appMode === 'development'
   const timer = shallowRef(isDev ? TEST_TIME : POMODORO_TIME)
-  const { play } = useSoundEffects()
-  const { pause, resume: start, isActive } = useIntervalFn(() => {
-    timer.value -= 1
-
-    if (timer.value === 0) {
-      play()
-      pause()
-
-      if (isBreak.value) {
-        isBreak.value = false
-        timer.value = isDev ? TEST_TIME : POMODORO_TIME
-
-        if (isLongBreak.value) {
-          isLongBreak.value = false
-          currentCycle.value = 0
-        }
-      }
-      else {
-        completions.value += 1
-        currentCycle.value += 1
-        isBreak.value = true
-
-        if (currentCycle.value === 4) {
-          timer.value = isDev ? TEST_TIME : LONG_BREAK
-          isLongBreak.value = true
-        }
-        else {
-          timer.value = isDev ? TEST_TIME : SHORT_BREAK
-        }
-      }
-    }
-  }, 1000, { immediate: false })
+  const { play: playSoundEffect } = useSoundEffects()
 
   const timeLeft = computed(() => {
     const minutes = Math.floor(timer.value / MINUTE_IN_SECONDS)
     const seconds = timer.value % 60
     return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
   })
+
+  const { pause, resume: start, isActive } = useIntervalFn(() => {
+    timer.value -= 1
+
+    if (timer.value === 0) {
+      handleTimerComplete()
+    }
+  }, 1000, { immediate: false })
+
+  function handleTimerComplete() {
+    playSoundEffect()
+    pause()
+
+    if (isBreak.value) {
+      finishBreak()
+    }
+    else {
+      finishWork()
+    }
+  }
+
+  function finishBreak() {
+    isBreak.value = false
+    timer.value = isDev ? TEST_TIME : POMODORO_TIME
+
+    if (isLongBreak.value) {
+      isLongBreak.value = false
+      currentCycle.value = 0
+    }
+  }
+
+  function finishWork() {
+    completions.value += 1
+    currentCycle.value += 1
+    isBreak.value = true
+
+    const isTimeForLongBreak = currentCycle.value === 4
+
+    if (isTimeForLongBreak) {
+      timer.value = isDev ? TEST_TIME : LONG_BREAK
+      isLongBreak.value = true
+    }
+    else {
+      timer.value = isDev ? TEST_TIME : SHORT_BREAK
+    }
+  }
 
   function reset() {
     timer.value = POMODORO_TIME
@@ -61,6 +76,17 @@ export const usePomodoro = () => {
     }
   }
 
+  function skip() {
+    if (isBreak.value) {
+      isBreak.value = false
+      timer.value = isDev ? TEST_TIME : POMODORO_TIME
+    }
+    else {
+      isBreak.value = true
+      timer.value = isDev ? TEST_TIME : SHORT_BREAK
+    }
+  }
+
   return {
     completions,
     currentCycle,
@@ -68,6 +94,7 @@ export const usePomodoro = () => {
     isBreak,
     pause,
     reset,
+    skip,
     start,
     timeLeft,
   }
