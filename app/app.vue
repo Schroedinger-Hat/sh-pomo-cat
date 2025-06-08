@@ -19,6 +19,7 @@ const {
   reset,
   start,
   timeLeft,
+  skip,
 } = usePomodoro()
 
 function handleTimerInteraction() {
@@ -75,12 +76,16 @@ useSeoMeta({
                   :class="{ 'bg-red-200 hover:bg-red-300': isActive }"
                   @click="handleTimerInteraction"
                 >
-                  <Icon :name="`carbon:${isActive ? 'pause' : 'play'}`" class="size-5" />
+                  <BaseIcon :icon="isActive ? 'pause' : 'skip'" class="size-5" />
                   <span>{{ isActive ? 'Pause' : 'Start' }}</span>
                 </Button>
                 <Button v-if="isActive" class="md:w-auto md:min-w-20 mt-2 min-w-20 leading-none" @click="reset">
-                  <Icon name="carbon:restart" class="size-5" />
+                  <BaseIcon icon="restart" class="size-5" />
                   Reset
+                </Button>
+                <Button class="md:w-auto md:min-w-20 mt-2 min-w-20 leading-none" @click="skip">
+                  <BaseIcon icon="skip-forward" class="size-5" />
+                  Skip
                 </Button>
               </div>
             </div>
@@ -106,7 +111,7 @@ useSeoMeta({
                       Completed PomoCats
                     </p>
                   </div>
-                  <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
+                  <div class="shrink-0 sm:flex sm:flex-col md:items-end">
                     <p class="text-sm/6">
                       {{ completions }}
                     </p>

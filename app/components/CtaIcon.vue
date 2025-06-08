@@ -11,14 +11,19 @@ const { variant = 'outline' } = defineProps<{
 </script>
 
 <template>
-  <Button size="icon" :variant="variant" class="size-8" :as-child="asChild">
+  <Button
+    :as-child
+    :variant
+    class="size-8"
+    size="icon"
+  >
     <template v-if="asChild && isAnchor">
       <NuxtLink :to="to">
-        <Icon :name="`carbon:${icon}`" class="size-5" />
+        <BaseIcon :icon />
       </NuxtLink>
     </template>
     <template v-else>
-      <Icon :name="`carbon:${icon}`" />
+      <BaseIcon :icon />
     </template>
   </Button>
 </template>
