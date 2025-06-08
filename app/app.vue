@@ -76,7 +76,7 @@ useSeoMeta({
                   :class="{ 'bg-red-200 hover:bg-red-300': isActive }"
                   @click="handleTimerInteraction"
                 >
-                  <BaseIcon :icon="isActive ? 'pause' : 'skip'" class="size-5" />
+                  <BaseIcon :icon="isActive ? 'pause' : 'play'" class="size-5" />
                   <span>{{ isActive ? 'Pause' : 'Start' }}</span>
                 </Button>
                 <Button v-if="isActive" class="md:w-auto md:min-w-20 mt-2 min-w-20 leading-none" @click="reset">
