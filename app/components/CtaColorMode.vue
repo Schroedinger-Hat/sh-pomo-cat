@@ -9,5 +9,8 @@ const handleColorChange = () =>
 </script>
 
 <template>
-  <CtaIcon :icon="icon" @click="handleColorChange" />
+  <CtaIcon
+    :icon="icon"
+    @click="handleColorChange"
+  />
 </template>

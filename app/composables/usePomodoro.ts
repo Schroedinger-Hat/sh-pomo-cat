@@ -35,8 +35,7 @@ export const usePomodoro = () => {
 
     if (isBreak.value) {
       finishBreak()
-    }
-    else {
+    } else {
       finishWork()
     }
   }
@@ -61,8 +60,7 @@ export const usePomodoro = () => {
     if (isTimeForLongBreak) {
       setTimer(LONG_BREAK)
       isLongBreak.value = true
-    }
-    else {
+    } else {
       setTimer(SHORT_BREAK)
     }
   }
@@ -81,8 +79,7 @@ export const usePomodoro = () => {
     if (isBreak.value) {
       isBreak.value = false
       setTimer(POMODORO_TIME)
-    }
-    else {
+    } else {
       isBreak.value = true
       setTimer(SHORT_BREAK)
     }

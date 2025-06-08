@@ -25,8 +25,9 @@ let mouseConstraint: Matter.MouseConstraint
 const isDragging = shallowRef(false)
 
 function addNewBody(options = {}) {
-  if (!engine || !render)
+  if (!engine || !render) {
     return
+  }
 
   // Default options
   const defaultOptions = {
@@ -55,8 +56,7 @@ function addNewBody(options = {}) {
         },
       },
     )
-  }
-  else {
+  } else {
     newBody = Bodies.rectangle(
       finalOptions.x,
       finalOptions.y,
@@ -77,8 +77,9 @@ function addNewBody(options = {}) {
 }
 
 function addMouseInteraction() {
-  if (!engine || !render)
+  if (!engine || !render) {
     return
+  }
 
   const mouse = Mouse.create(render.canvas)
 
@@ -157,8 +158,9 @@ function start() {
 }
 
 function handleResize() {
-  if (!render || !engine)
+  if (!render || !engine) {
     return
+  }
 
   render.bounds.max.x = width.value
   render.bounds.max.y = height.value
@@ -223,20 +225,24 @@ const debouncedResize = useDebounceFn(() => {
 }, 200)
 
 onMounted(async () => {
-  if (!wrapperRef.value)
+  if (!wrapperRef.value) {
     return
+  }
 
   start()
   useEventListener('resize', debouncedResize)
 })
 
 onBeforeUnmount(() => {
-  if (runner)
+  if (runner) {
     Runner.stop(runner)
-  if (render)
+  }
+  if (render) {
     Render.stop(render)
-  if (engine)
+  }
+  if (engine) {
     Engine.clear(engine)
+  }
 })
 
 watch([width, height], () => {
@@ -249,8 +255,9 @@ defineExpose({
   isDragging,
   addNewBody,
   clearBodies: () => {
-    if (!engine)
+    if (!engine) {
       return
+    }
     const nonStaticBodies = engine.world.bodies.filter(body => !body.isStatic)
     Composite.remove(engine.world, nonStaticBodies)
   },
@@ -258,5 +265,8 @@ defineExpose({
 </script>
 
 <template>
-  <div ref="wrapper" class="wrapper" />
+  <div
+    ref="wrapper"
+    class="wrapper"
+  />
 </template>
