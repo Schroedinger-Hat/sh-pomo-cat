@@ -59,16 +59,16 @@ export const usePomodoro = () => {
     const isTimeForLongBreak = currentCycle.value === 4
 
     if (isTimeForLongBreak) {
-      timer.value = isDev ? TEST_TIME : LONG_BREAK
+      setTimer(LONG_BREAK)
       isLongBreak.value = true
     }
     else {
-      timer.value = isDev ? TEST_TIME : SHORT_BREAK
+      setTimer(SHORT_BREAK)
     }
   }
 
   function reset() {
-    timer.value = POMODORO_TIME
+    setTimer(POMODORO_TIME)
     if (isActive.value) {
       pause()
       currentCycle.value = 0
@@ -77,14 +77,19 @@ export const usePomodoro = () => {
   }
 
   function skip() {
+    pause()
     if (isBreak.value) {
       isBreak.value = false
-      timer.value = isDev ? TEST_TIME : POMODORO_TIME
+      setTimer(POMODORO_TIME)
     }
     else {
       isBreak.value = true
-      timer.value = isDev ? TEST_TIME : SHORT_BREAK
+      setTimer(SHORT_BREAK)
     }
+  }
+
+  function setTimer(amount: number) {
+    timer.value = isDev ? TEST_TIME : amount
   }
 
   return {
