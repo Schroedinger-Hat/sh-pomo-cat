@@ -1,101 +1,175 @@
-<div align='center'>
-
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-
-</div>
-
-<!-- PROJECT LOGO -->
-<br />
 <div align="center">
-  <h1>Schrödinger Hat Nuxt Template</h1>
-
-  <a href="https://github.com/schroedinger-Hat/template">
-    <img src="app/assets/svg/sh-logo.svg" alt="Logo" width="80" height="80">
-  </a>
-
-  <p align="center">
-    <a href="https://github.com/schroedinger-Hat/template/blob/main/README.md"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/schroedinger-Hat/Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/schroedinger-Hat/Template/issues">Request Feature</a>
-  </p>
+  <img src="app/assets/svg/sh-logo.svg" alt="Schrödinger PomoCat Logo" width="120" height="120">
 </div>
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#tech-stack">Built With</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
+# Schrödinger PomoCat 🍅😸
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+A delightful Pomodoro timer application with a playful cat theme and physics-based animations, built with Nuxt.js.
 
-This project, developed by the Schrödinger Hat team, is an opinionated, robust, and efficient Nuxt.js template. It's designed to serve as a minimalistic yet expandable starting point for both simple and complex web applications. The template incorporates best practices and cutting-edge technologies from the Vue and Nuxt ecosystem. With scalability at its core, it can adapt to the increasing demands and complexities of any project, providing a solid and efficient foundation that can be customized to suit your needs.
+## Features ✨
 
-### Tech stack
+- **Pomodoro Timer**: Classic 25-minute work sessions with 5-minute breaks
+- **Physics Animation**: Interactive Matter.js physics simulation with falling objects
+- **Sound Effects**: Audio feedback for timer events
+- **Responsive Design**: Works beautifully on desktop and mobile devices
+- **Modern UI**: Built with Tailwind CSS and Shadcn Vue components
+- **Dark/Light Mode**: Adaptive color scheme support
+- **TypeScript**: Full type safety throughout the application
 
-This project is built with a number of leading-edge technologies to ensure maximum efficiency and performance.
-In this project, the technologies utilized are:
+## Tech Stack 🛠️
 
-- [Nuxt3](https://nuxt.com/)
-- [SASS](https://sass-lang.com/)
-- [Shadcn Vue](https://www.shadcn-vue.com/)
-- [TailwindCSS](https://tailwindcss.com/)
-- [Typescript](https://www.typescriptlang.org/)
-- [Vue3](https://vuejs.org/)
+This project is built with cutting-edge technologies:
 
-Nuxt modules utilized:
-- [Nuxt Icon ](https://nuxt.com/modules/icon)
-- [Nuxt SVGO](https://nuxt.com/modules/nuxt-svgo)
-- [Nuxt Test Utils](https://github.com/nuxt/test-utils)
-- [VueUse](https://nuxt.com/modules/vueuse)
+- [Nuxt 3](https://nuxt.com/) - The Vue.js framework
+- [Vue 3](https://vuejs.org/) - Progressive JavaScript framework
+- [TypeScript](https://www.typescriptlang.org/) - Type-safe JavaScript
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Shadcn Vue](https://www.shadcn-vue.com/) - Beautiful UI components
+- [Matter.js](https://brm.io/matter-js/) - Physics engine for animations
+- [VueUse](https://vueuse.org/) - Essential Vue composition utilities
 
-## Usage
+### Nuxt Modules Used:
+- [Nuxt Icon](https://nuxt.com/modules/icon) - Icon management
+- [Nuxt SVGO](https://nuxt.com/modules/nuxt-svgo) - SVG optimization
+- [Nuxt Test Utils](https://github.com/nuxt/test-utils) - Testing utilities
+- [Nuxt Color Mode](https://color-mode.nuxtjs.org/) - Dark/light mode
+- [Nuxt Fonts](https://fonts.nuxtjs.org/) - Font optimization
 
-To use this template, simply clone the repository to your local machine, install the necessary dependencies with `pnpm install`, and start the development server with `pnpm run dev`.
+## Installation 🚀
 
-You can also utilize the template when creating a new repository directly from GitHub.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/schroedinger-Hat/sh-pomo-cat.git
+   cd sh-pomo-cat
+   ```
 
-If you need to add more modules go over to the [Nuxt Modules](https://nuxt.com/modules) page and follow the instructions listed over there to add one as needed.
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
 
-## Contributing
+3. Start the development server:
+   ```bash
+   pnpm run dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:3000`
+
+## Usage 📖
+
+### Timer Controls
+- **Start/Pause**: Click the play/pause button to control the timer
+- **Reset**: Reset the current session (only available when timer is active)
+- **Skip**: Skip to the next session (work → break → work)
+
+### Timer Sessions
+- **Work Session**: 25 minutes of focused work time 🍅
+- **Break Session**: 5 minutes of rest time 💆
+
+### Physics Interaction
+- Watch objects fall and interact with the physics simulation
+- The animation responds to your timer completions
+
+## Available Commands 🔧
+
+```bash
+# Development
+pnpm run dev          # Start development server
+pnpm run build        # Build for production
+pnpm run generate     # Generate static site
+pnpm run preview      # Preview production build
+
+# Code Quality
+pnpm run lint         # Run ESLint
+pnpm run lint:fix     # Fix ESLint issues
+pnpm run lint:scss    # Lint SCSS files
+
+# Testing
+pnpm run test         # Run tests with Vitest
+```
+
+## Configuration ⚙️
+
+The application can be configured through environment variables:
+
+```bash
+# .env
+NUXT_PUBLIC_APP_MODE=development  # development | production
+```
+
+### Customizing Timer Durations
+
+You can modify the timer durations in `app/composables/usePomodoro.ts`:
+
+```typescript
+const POMODORO_TIME = 25 * 60 // 25 minutes in seconds
+const SHORT_BREAK = 5 * 60    // 5 minutes in seconds
+const LONG_BREAK = 15 * 60    // 15 minutes in seconds
+const TEST_TIME = 0.05 * 60   // 3 seconds for development
+```
+
+**Development Mode**: When `NUXT_PUBLIC_APP_MODE` is set to `'development'`, the timer will default to approximately 3 seconds (0.05 minutes) for all sessions to speed up testing and development.
+
+## Project Structure 📁
+
+```
+sh-pomo-cat/
+├── app/
+│   ├── components/
+│   │   ├── pomodoro/          # Pomodoro-specific components
+│   │   └── ui/                # Reusable UI components
+│   ├── composables/           # Vue composables
+│   ├── assets/               # Static assets
+│   └── app.vue               # Main app component
+├── public/                   # Public assets
+├── server/                   # Server-side code
+└── test/                     # Test files
+```
+
+## Contributing 🤝
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-<!-- CONTACT -->
+## License 📄
 
-## Contact
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Schrödinger's Hat Team - [@schroedinger_hat](mailto:dev@schroedinger-hat.org)
+## Contact 📧
 
-Project Link: [Schrödinger Hat Nuxt template](https://github.com/schroedinger-Hat/sh-nuxt-template)
+Schrödinger Hat Team - [@schroedinger_hat](mailto:dev@schroedinger-hat.org)
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+Project Link: [Schrödinger PomoCat](https://github.com/schroedinger-Hat/sh-pomo-cat)
 
-[contributors-shield]: https://img.shields.io/github/contributors/schroedinger-Hat/sh-nuxt-template.svg?style=for-the-badge
-[contributors-url]: https://github.com/schroedinger-Hat/sh-nuxt-template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/schroedinger-Hat/sh-nuxt-template.svg?style=for-the-badge
-[forks-url]: https://github.com/schroedinger-Hat/sh-nuxt-template/network/members
-[stars-shield]: https://img.shields.io/github/stars/schroedinger-Hat/sh-nuxt-template?style=for-the-badge
-[stars-url]: https://github.com/schroedinger-Hat/sh-nuxt-template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/schroedinger-Hat/sh-nuxt-template.svg?style=for-the-badge
-[issues-url]: https://github.com/schroedinger-Hat/sh-nuxt-template/issues
+---
+
+## Maintainers 👨‍💻
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/Readpato">
+          <img src="https://github.com/Readpato.png" width="100px" alt="Patrick Raedler"/>
+          <br />
+          <sub>
+            <b>Patrick Raedler</b>
+          </sub>
+        </a>
+        <br />
+        <span>💻 Maintainer</span>
+      </td>
+    </tr>
+  </table>
+</div>
+
+---
+
+<div align="center">
+  Made with ❤️ by the Schrödinger Hat Team
+</div>
