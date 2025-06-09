@@ -6,6 +6,10 @@
 
 A delightful Pomodoro timer application with a playful cat theme and physics-based animations, built with Nuxt.js.
 
+Don't be shy, click start:
+
+[![image](https://github.com/user-attachments/assets/d53ed5ce-a4be-4888-b562-8ff74d144ec5)](https://pomo.schroedinger-hat.org)
+
 ## Features ✨
 
 - **Pomodoro Timer**: Classic 25-minute work sessions with 5-minute breaks
