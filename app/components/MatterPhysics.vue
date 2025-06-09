@@ -29,7 +29,6 @@ function addNewBody(options = {}) {
     return
   }
 
-  // Default options
   const defaultOptions = {
     x: width.value * Math.random(),
     y: -50,
