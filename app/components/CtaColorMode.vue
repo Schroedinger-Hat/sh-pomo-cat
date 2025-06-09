@@ -10,6 +10,7 @@ const handleColorChange = () =>
 
 <template>
   <CtaIcon
+    class="cursor-pointer"
     :icon="icon"
     @click="handleColorChange"
   />
