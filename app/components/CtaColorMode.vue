@@ -10,6 +10,7 @@ const handleColorChange = () =>
 
 <template>
   <CtaIcon
+    aria-label="Toggles dark and light mode"
     class="cursor-pointer"
     :icon="icon"
     @click="handleColorChange"

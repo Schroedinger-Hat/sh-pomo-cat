@@ -24,9 +24,9 @@ function handleTimerInteraction() {
         {{ isBreak ? 'Break 💆' : 'Pomodoro 🍅' }}
       </Badge>
     </div>
-    <p class="text-7xl tabular-nums text-center w-full">
+    <h2 class="text-7xl tabular-nums text-center w-full">
       {{ timeLeft }}
-    </p>
+    </h2>
     <div class="flex justify-center items-center gap-x-2 w-full">
       <PomodoroButton
         class="transition-colors bg-green-200 hover:bg-green-300 text-black"

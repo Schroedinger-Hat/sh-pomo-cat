@@ -8,12 +8,13 @@ import SHLogo from '~/assets/svg/sh-logo.svg'
   >
     <div class="mr-auto flex justify-center items-center gap-x-2">
       <SHLogo class="size-8" />
-      <p class="font-medium text-sm md:text-lg leading-none">
+      <h1 class="font-medium text-sm md:text-lg leading-none">
         Schrödinger PomoCat
-      </p>
+      </h1>
     </div>
     <nav class="flex gap-x-2">
       <CtaIcon
+        aria-label="Redirects to github"
         as-child
         icon="logo-github"
         is-anchor
