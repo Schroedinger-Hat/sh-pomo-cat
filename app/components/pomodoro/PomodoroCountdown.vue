@@ -21,7 +21,7 @@ function handleTimerInteraction() {
         variant="outline"
         class="mx-auto block"
       >
-        {{ isBreak ? 'Break' : 'Pomodoro' }}
+        {{ isBreak ? 'Break 💆' : 'Pomodoro 🍅' }}
       </Badge>
     </div>
     <p class="text-7xl tabular-nums text-center w-full">
@@ -29,7 +29,7 @@ function handleTimerInteraction() {
     </p>
     <div class="flex justify-center items-center gap-x-2 w-full">
       <PomodoroButton
-        class="transition-colors bg-green-200 hover:bg-green-300"
+        class="transition-colors bg-green-200 hover:bg-green-300 text-black"
         :class="{ 'bg-red-200 hover:bg-red-300': isActive }"
         :icon="isActive ? 'pause' : 'play'"
         @click="handleTimerInteraction"
